@@ -85,10 +85,52 @@ La API fallaría al intentar conectarse porque PostgreSQL aún no acepta conexio
 
 ## Evidencias
 
-- Captura de `docker compose ps` con los 3 servicios corriendo.
-- Evidencia del CRUD completo probado con curl (GET, POST, PUT, DELETE).
-- Captura de un POST con datos inválidos devolviendo 400.
-- Captura de pgAdmin mostrando la tabla `users` con los datos.
+### Creación del repositorio
+![Repositorio creado en GitHub](evidencias/e01.png)
+
+### Commit inicial y construcción de la imagen
+Se sube todo el código (API, Dockerfile, docker-compose, script de migración, Makefile), se instalan dependencias y se levanta el proyecto con Docker Compose (3 servicios: `db`, `api`, `pgadmin`).
+
+![Commit inicial](evidencias/e02.png)
+![Push del commit inicial](evidencias/e03.png)
+![Push completado](evidencias/e04.png)
+![Instalación de dependencias](evidencias/e05.png)
+![Construcción de la imagen y servicios](evidencias/e06.png)
+
+### Resolución de conflicto de puerto entre proyectos
+El puerto 3000 estaba ocupado por el contenedor del Proyecto 1; se detiene y se reconstruye el servicio `api` para que quede correctamente publicado.
+
+![Conflicto de puerto detectado](evidencias/e07.png)
+![Contenedor recreado](evidencias/e08.png)
+![Servicios corriendo correctamente](evidencias/e09.png)
+
+### Pruebas de la API: salud, CRUD y validación
+Se prueban el endpoint de salud, el listado (con los usuarios de ejemplo creados por la migración automática), la creación, actualización y eliminación de usuarios.
+
+![Endpoint de salud](evidencias/e10.png)
+![Listado de usuarios](evidencias/e11.png)
+![Creación de usuario (201)](evidencias/e12.png)
+![Actualización de usuario (200)](evidencias/e13.png)
+![Eliminación de usuario (204)](evidencias/e14.png)
+
+### Verificación en pgAdmin
+Se configura pgAdmin, se conecta a la base de datos usando `db` como host (el nombre del servicio, no `localhost`), y se confirma que los datos creados por la API se reflejan en la tabla `users`.
+
+![Acceso a pgAdmin](evidencias/e15.png)
+![Panel principal de pgAdmin](evidencias/e16.png)
+![Registro del servidor](evidencias/e17.png)
+![Configuración de la conexión](evidencias/e18.png)
+![Servidor conectado](evidencias/e19.png)
+![Bases de datos disponibles](evidencias/e20.png)
+![Tabla users en el árbol de pgAdmin](evidencias/e21.png)
+![Datos de la tabla users](evidencias/e22.png)
+
+### Flujo de Pull Request
+Se crea una rama corta, se abre un Pull Request hacia `main`, se fusiona y se limpia la rama, dejando el repositorio con una sola rama (`main`).
+
+![Rama y push](evidencias/e23.png)
+![Pull Request creado](evidencias/e24.png)
+![Limpieza final de la rama](evidencias/e25.png)
 
 ## Autor
 
