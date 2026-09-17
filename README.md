@@ -89,3 +89,7 @@ La API fallaría al intentar conectarse porque PostgreSQL aún no acepta conexio
 - Evidencia del CRUD completo probado con curl (GET, POST, PUT, DELETE).
 - Captura de un POST con datos inválidos devolviendo 400.
 - Captura de pgAdmin mostrando la tabla `users` con los datos.
+
+## Autor
+
+Manuela Cordoba
