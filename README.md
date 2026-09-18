@@ -107,6 +107,14 @@ El puerto 3000 estaba ocupado por el contenedor del Proyecto 1; se detiene y se 
 ### Pruebas de la API: salud, CRUD y validación
 Se prueban el endpoint de salud, el listado (con los usuarios de ejemplo creados por la migración automática), la creación, actualización y eliminación de usuarios.
 
+**Demostración de validación — POST con datos inválidos devuelve 400:**
+```
+curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"name":"","email":"no-es-un-email"}'
+
+{"error":"name y email son obligatorios"}
+HTTP_STATUS:400
+```
+
 ![Endpoint de salud](evidencias/e10.png)
 ![Listado de usuarios](evidencias/e11.png)
 ![Creación de usuario (201)](evidencias/e12.png)
